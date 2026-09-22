@@ -1,3 +1,5 @@
+           ASSIGNMENT:1
+
 (1) Program to point "Dsa" 5 times 
 
       program 
@@ -665,6 +667,298 @@ Q(20) Implement Insertion sort
 1 4 6 7 8 9 5
 1 4 5 6 7 8 9
 sorted array : 1 4 5 6 7 8 9 
+
+
+Q(21) modified bubble sort (Swap flag)
+
+
+            PROGRAM 
+#include <stdio.h>
+    void bubblesort(int array[], int size){
+    int step, i;
+    int swap = 0;
+    for (step = 0; step < size-1; step ++){
+    for (i = 0; i < size-step-1; ++i){
+       if (array[i] > array[i+1]){
+       int temp = array[i];
+       array[i] = array[i+1];
+       array[i+1] = temp;
+       swap ++ ;
+   }
+}
+       if (swap == 0){
+       break;
+  }
+        for(i = 0; i < size; i++){
+            printf("%d", array[i]);
+        }
+          printf("\n");
+    }
+}
+    int main(){
+    int i;
+    int data[] = {7, 5, 4, 8, 1};
+    int size = size of (data) / size of (data[0]);
+    bubblesort(data, size);
+    printf("sorted array: ");
+    for (i = 0; i < size; i++){
+        printf("%d", data[i]);
+    }
+}
+
+
+        OUTPUT 
+5 4 7 1 8
+4 5 1 7 8
+4 1 5 7 8
+1 4 5 7 8
+Sorted array: 1 4 5 7 8
+
+
+Q(22)Implement modified SelectionSort (min_idx & max_idx together)
+   
+   
+          program 
+#include <stdio.h>
+     void SelectionSort (int array [], int size){
+    int step, i;
+    for (step = 0; step < size - 1 ; step++){
+    int min_idx = step;
+    for (i = step + 1 ; i < size ; i++){
+    if (array [i] < array [min_idx]){
+    min_idx = i;
+   }
+}
+   int temp = array [min_idx];
+   array [min_idx] = array [step];
+   array [step] = temp;
+   for (i = 0; i < size ; i++){
+   printf ("%d ", array [i]);
+}
+   printf ("\n");
+}
+   for (step = size - 1 ; step > 0 ; step--){
+   int max_idx = step;
+   for (i = size - 1 ; i > step ; i--){
+   if (array [i] > array [max_idx]){
+   max_idx = i;
+  }
+}
+int antemp = array[max_idx];
+    array[max_idx] = array[size - 1];
+    array[size - 1] = antemp;
+    for (i = 0; i < size; i++) {
+    printf("%d", array[i]);
+}
+    printf("\n");
+}
+
+   int main() {
+   int i;
+   int data[] = {6, 4, 7, 8, 1, 9, 5};
+   int size = sizeof(data) / sizeof(data[0]);
+   SelectionSort(data, size);
+   printf("sorted array: ");
+   for (i = 0; i < size; i++) {
+   printf("%d", data[i]);
+  }
+}
+
+
+           OUTPUT 
+1 4 7 8 6 9 5
+1 4 7 8 6 9 5
+1 4 5 8 6 9 7
+1 4 5 6 8 9 7
+1 4 5 6 7 9 8
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+1 4 5 6 7 8 9
+Sorted array: 1 4 5 6 7 8 9
+
+        ASSIGNMENT: 6
+
+Q.(23) Implement merge sort
+
+         PROGRAM 
+#include<stdio.h>
+void merge (int arr[],int p,int q, int r){
+  int n1 = q-p + 1;
+  int n2 = r-q;
+  int L[n1], M[n2];
+  for(int i=0; i<n1; i++){
+    L[i] = arr[p + i];
+  }
+  for (int j=0; j<n2; j++){
+    M[j] = arr[q + 1 + j];
+  }
+  int i, j, k;
+  i = 0;
+  j = 0;
+  k = p;
+  while (i < n1 && j < n2){
+    if (L[i] <= M[j]){
+      arr[k] = L[i];
+      i++;
+    }
+    else {
+      arr[k] = M[j];
+      j++;
+    }
+    k++;
+  }
+  while (i < n1){
+    arr[k] = L[i];
+    i++;
+    k++;
+  }
+  while (j < n2) {
+    arr[k] = m[j];
+        j++;
+        k++;
+    }
+}
+void mergeSort(int arr[],int l, int r){
+    if (l < r){
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        mergeSort(arr, l, m, r);
+    }
+}
+int main() {
+    int data[] = {4, 5, 7, 9, 1, 3, 8, 2, 6};
+    int n = Size of (data) / Size of (data[0]);
+    mergeSort (data, 0, n - 1);
+    printf ("Sorted array: ");
+    for (int i = 0; i < n; i++) {
+        printf ("%d, ", data[i]);
+    }
+    return 0;
+}
+
+
+
+            OUTPUT 
+sorted array: 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+
+
+Q(24) Implement Quick Sort
+
+             program 
+#include <stdio.h>
+void swap (int array [], int a, int b) {
+    int temp = array [a];
+    array [a] = array [b];
+    array [b] = temp;
+}
+    int partition (int array [], int low, int high) {
+    int pivot = array[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+    if (array[j] <= pivot) {
+        i++;
+        swap(array, i, j);
+    }
+}
+    swap(array, i + 1, high);
+    return i + 1;
+}
+     void quicksort(int array[], int low, int high) {
+     if (low < high) {
+     int pi = partition(array, low, high);
+      quicksort(array, low, pi - 1);
+      quicksort(array, pi + 1, high);
+    }
+}
+    int main() {
+    int data[] = {4, 5, 7, 9, 11, 3, 8, 2, 6};
+    quicksort(data, 0, 8);
+    for (int i = 0; i < 9; i++) {
+        printf("%d ", data[i]);
+    }
+    return 0;
+}
+
+             OUTPUT 
+2 3 4 5 6 7 8 9 11
+
+
+Q(25)Take an array of 10 element randomly unsorted Implement the sorting which checks two adjacent element and swap them if needed and perform the sorting for one external loop iteration. Then take that intermediate array passing to a sorting function which performs worst when array is sorted.
+
+
+         PROGRAM 
+#include <stdio.h>
+    int Swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+    int partition (int array [], int low, int high)
+{
+    int pivot = array [high];
+    int i = low - 1;
+    for (int j = low; j < high; j++)
+{
+    if (array [j] <= pivot)
+{ i++;
+    Swap(& array [i], & array [j]);
+  }
+}
+    Swap(& array [i+1], & array [high]);
+    return (i+1);
+}
+   void quicksort (int array [], int low, int high)
+{
+   if (low < high)
+{
+   int pi = partition (array, low, high);
+quicksort (array, low, pi - 1);
+quicksort (array, pi+1, high);
+   }
+}
+    void bubble sort (int array [], int size)
+{
+    for (int step = 0; step < size - 1; step++)
+  {
+        int swap = 0;
+        for (int i = 0; i < size - step - 1; ++i)
+{
+        if (array [i] > array [i+1])
+{
+        int temp = array [i];
+        array [i] = array [i+1];
+        array [i+1] = temp;
+        swap = 1;
+ }
+      if (swap == 1)
+    {
+      quicksort (array , 0, size - 1);
+            }
+        }
+    }
+}
+      int main ()
+{
+      int data [7] = { 6, 4, 7, 8, 1, 10, 5 };
+      int size = size of (data) / size of (data [0]);
+      bubble sort (data , size);
+      Print f ("Sorted array : \n");
+      for (int i = 0; i < size ; i + +)
+{
+        pintf (" % d", data [i]);
+    }
+}
+
+
+           OUTPUT 
+ Sorted array : 1 4 5 6 7 8 10
+
 
 
 
